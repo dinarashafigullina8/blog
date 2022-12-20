@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 
 
@@ -14,10 +13,12 @@ class Category(models.Model):
         ordering = ('name',)
 
 
+
 class Post(models.Model):
     categoryies = models.ManyToManyField(Category, related_name = 'category')
     topic = models.CharField(max_length = 255, verbose_name = 'Тема')
     text = models.TextField(verbose_name = 'Пост')
+    image = models.ImageField(default='-', verbose_name='Фото')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 
     def __str__(self):
@@ -29,6 +30,7 @@ class Post(models.Model):
         ordering = ('topic','date')
 
 
+
 class User(models.Model):
     man = 'М'
     women = 'Ж'
@@ -36,7 +38,7 @@ class User(models.Model):
         (man, 'Мужчина'),
         (women, 'Женщина')
     ]
-    post = models.ForeignKey(Post, on_delete = models.CASCADE, related_name = 'post', default='-')
+    post = models.ForeignKey(Post, on_delete = models.SET_NULL, null=True, related_name = 'author', default=0)
     first_name = models.CharField(max_length = 255, verbose_name='Имя')
     last_name = models.CharField(max_length = 255, verbose_name='Фамилия')
     gender = models.CharField(max_length = 255, choices = gender_choices, verbose_name='Пол')
@@ -51,3 +53,5 @@ class User(models.Model):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
         ordering = ('first_name', 'last_name')
+
+
