@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>Посты в категории {{category_name}}</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Картинка</th>
+        <th scope="col">Пост</th>
+        <th scope="col">Тема</th>
+      </tr>
+    </thead>
+    {% for post in posts %}
+    <tbody>
+      <tr>
+        <th scope="row">{{post.image}}</th>
+        <td>{{post.text}}</td>
+        <td>{{post.topic}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+
+{% endblock %}

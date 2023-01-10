@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length = 255, verbose_name = 'Категория')
@@ -44,8 +44,8 @@ class Post(models.Model):
     image = models.ImageField(default='-', verbose_name='Фото')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
     
     class Meta:
         verbose_name = 'Пост'
