@@ -26,7 +26,31 @@
     </div>
     {% endblock mainmenu %}
 
-    {% block content %}
+    {% block content %} 
+    {% for post in posts %} 
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-auto">
+      
+<div class="card" style="width: 18rem;">
+  {% if post.image == "-" %}
+  <div class="card-body">
+    <h5 class="card-title">{{post.topic}}</h5>
+    <p class="card-text">{{post.text|truncatechars:50}}</p>
+    <a href="read/{{post.id}}/" class="btn btn-primary">Читать полностью</a>
+  </div>
+  {% else %}
+    <img src="../../media/{{post.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{post.topic}}</h5>
+      <p class="card-text">{{post.text|truncatechars:50}}</p>
+      <a href="read/{{post.id}}/" class="btn btn-primary">Читать полностью</a>
+    </div>
+  </div>
+  {% endif %}
+        </div>
+        <div class="col">
+{% endfor %}    
     {% endblock %}
   </div>
   </body>

@@ -41,7 +41,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete = models.CASCADE,related_name = 'user', default=0)
     topic = models.CharField(max_length = 255, verbose_name = 'Тема')
     text = models.TextField(verbose_name = 'Пост')
-    image = models.ImageField(default='-', verbose_name='Фото')
+    image = models.ImageField(upload_to="images/", default='-', verbose_name='Фото')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 
     # def __str__(self):
